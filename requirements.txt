@@ -1,2 +1,5 @@
 numpy
 psutil
+pdfminer.six
+watchdog
+scipy

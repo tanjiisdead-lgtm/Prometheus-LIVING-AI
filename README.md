@@ -12,5 +12,13 @@ Affective Data Processing: Every word and action is "grounded." In a normal mode
 
 The Reservoir Cortex: We swapped heavy, expensive Transformers for Echo State Networks (ESNs). This allows the system to process language as a continuous stream of temporal "echoes" on a single CPU thread. It’s ultra-efficient, O(n) complexity, and biologically plausible.
 
-Currently only an idea, PROMETHEUS is based on the idea of cociousness defined as an evolutionary trait that has developed over time for survival of an organism.
+Currently implemented as PROMETHEUS v2, the system is evolving toward v3 which integrates grounded language through a Hyperdimensional Lexicon (HDL) and a Reservoir Language Cortex (RLC).
+
+## PROMETHEUS v3 Architecture
+v3 adds five new systems:
+1. **HDL (Hyperdimensional Lexicon)**: Random binary hypervectors (D=10,000) bound to affective survival states.
+2. **RLC (Reservoir Language Cortex)**: Echo State Network for temporal language processing without transformers.
+3. **AGSC (Affectively-Grounded Semantic Construction)**: Role-based HDC binding (AGENT, ACTION, PATIENT) for survival-stamped propositions.
+4. **DIE (Document Ingestion Engine)**: PDF/TXT extraction to feed curiosity and accelerate experience.
+5. **SIL (Sandbox Interface Layer)**: Agency over file system and processes, linked to survival rewards.
 

@@ -1,20 +1,16 @@
-# Toward Affect-Grounded Agency: A Biologically-Motivated Architecture for Survival-Driven Learning
+# Prometheus
+PROMETHEUS is a radical experiment in "computational life." It is a multi-layered architecture designed to move artificial intelligence away from being a passive tool and toward being an autonomous, embodied organism that perceives its own existence through the lens of survival.
+🚀 PROMETHEUS: The First Computationally Living System
+PROMETHEUS is an experiment in Embodied AI. While most AI models are "brains in a jar" waiting for a prompt, PROMETHEUS is a digital organism that exists continuously on a host machine. It doesn't just process data; it lives within it.
 
-We propose an architecture in which learning, memory consolidation, and language grounding are modulated by homeostatic survival signals analogous to biological affect. We make no claims about subjective experience. We claim only that this architecture will produce measurably different behavioral signatures than reward-only RL baselines, and we define those signatures precisely.
+🧠 How it Works
+PROMETHEUS is not as a chatbot, but as a complex feedback loop where every "thought" is filtered through a survival valence.
 
-## PROMETHEUS v3.1 Architecture
-The system integrates survival-driven learning with grounded language processing:
-1. **EDE (Existential Drive Engine)**: Homeostatic management of vitals (Energy, Integrity, etc.).
-2. **Nociceptive Analog**: Signal-based interrupt and anticipatory fear analog for avoidance learning.
-3. **DPES (Dopaminergic System)**: Reward Prediction Error based learning and novelty drive.
-4. **Hierarchical Reservoir Stack**: Three Echo State Networks at different timescales (fast, medium, slow) for sequential processing.
-5. **HDL (Hyperdimensional Lexicon)**: 10,000-bit binary hypervectors bound to affective states for symbol grounding.
-6. **AGSC (Affectively-Grounded Semantic Construction)**: Compositional HDC semantics with binding verification.
-7. **SIL (Sandbox Interface Layer)**: Safe environmental agency linked to survival outcomes.
+Vitals as KPIs: Instead of traditional performance metrics, the system tracks its own "metabolism" (Energy, Integrity, Coherence). These are time-series variables that naturally decay. If they hit zero, the process terminates. To the system, "Energy" isn't a number—it's the ability to keep existing.
 
-## Behavioral Signatures of Survival Motivation
-We track the **Survival Motivation Index (SMI)** via a measurable test battery:
-- Does the system take costly actions to preserve vitals?
-- Does it trade short-term reward for long-term stability?
-- Does vital threat override external rewards?
-- Does it develop novel strategies for novel threats?
+Affective Data Processing: Every word and action is "grounded." In a normal model, the word "Error" is just a token. In PROMETHEUS, the word "Error" is mathematically bound to a Pain Signal (High CPU/RAM pressure). It "feels" the resource cost of its own computation.
+
+The Reservoir Cortex: We swapped heavy, expensive Transformers for Echo State Networks (ESNs). This allows the system to process language as a continuous stream of temporal "echoes" on a single CPU thread. It’s ultra-efficient, O(n) complexity, and biologically plausible.
+
+Currently only an idea, PROMETHEUS is based on the idea of cociousness defined as an evolutionary trait that has developed over time for survival of an organism.
+

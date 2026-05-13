@@ -16,10 +16,11 @@ class AffectivelyGroundedSemantics:
         }
 
         self.last_proposition_salience = 0.0
+        self.last_confidence = 1.0
 
     def build_proposition(self, agent_word, action_word, patient_word, context_word=None, current_affective_state=None):
         """
-        Construct a proposition as a single hypervector.
+        Construct a proposition with binding verification.
         """
         agent_hv   = bind(self.hdl.get_word_hv(agent_word),   self.ROLE['AGENT'])
         action_hv  = bind(self.hdl.get_word_hv(action_word),  self.ROLE['ACTION'])
@@ -32,6 +33,24 @@ class AffectivelyGroundedSemantics:
             components.append(context_hv)
 
         proposition = superpose(components)
+
+        # BINDING VERIFICATION: unbind each role and verify recovery
+        success_count = 0
+        total_roles = 3 + (1 if context_word else 0)
+
+        # Verify Agent
+        recovered_agent, _ = self.query_proposition(proposition, 'AGENT')
+        if recovered_agent == agent_word: success_count += 1
+
+        # Verify Action
+        recovered_action, _ = self.query_proposition(proposition, 'ACTION')
+        if recovered_action == action_word: success_count += 1
+
+        # Verify Patient
+        recovered_patient, _ = self.query_proposition(proposition, 'PATIENT')
+        if recovered_patient == patient_word: success_count += 1
+
+        self.last_confidence = success_count / total_roles
 
         # Stamping with affective context
         if current_affective_state:
@@ -51,27 +70,18 @@ class AffectivelyGroundedSemantics:
         return word, similarity
 
     def compute_survival_relevance(self, proposition_hv, system_state):
-        """
-        How relevant is this proposition to survival?
-        Simplified matching against affective markers.
-        """
-        # In a real system, we'd match against pain_memory_bundle etc.
-        # Here we just check if it contains 'painful' or 'rewarding' words
-
-        # Placeholder for relevance logic
-        # For now, let's just say relevance is linked to the proposition's
-        # internal similarity to known affective HVs
-
-        pain_hv = encode_scalar(1.0, self.D) # Pure pain marker
-        reward_hv = encode_scalar(1.0, self.D) # Pure reward marker (dopamine)
+        pain_hv = encode_scalar(1.0, self.D)
+        reward_hv = encode_scalar(1.0, self.D)
 
         pain_relevance = hamming_similarity(proposition_hv, pain_hv)
         energy_relevance = hamming_similarity(proposition_hv, reward_hv)
 
-        self.last_proposition_salience = max(pain_relevance, energy_relevance)
+        # Confidence modulates salience
+        self.last_proposition_salience = max(pain_relevance, energy_relevance) * self.last_confidence
 
         return {
             'pain_relevance': pain_relevance,
             'energy_relevance': energy_relevance,
-            'total_salience': self.last_proposition_salience
+            'total_salience': self.last_proposition_salience,
+            'confidence': self.last_confidence
         }

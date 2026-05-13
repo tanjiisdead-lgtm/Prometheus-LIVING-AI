@@ -2,7 +2,7 @@ import unittest
 import numpy as np
 from prometheus.hdc import random_hv, bind, superpose, hamming_similarity
 from prometheus.hdl import HyperdimensionalLexicon
-from prometheus.rlc import ReservoirLanguageCortex
+from prometheus.rlc import HierarchicalReservoirStack
 from prometheus.semantics import AffectivelyGroundedSemantics
 
 class TestV3Components(unittest.TestCase):
@@ -34,7 +34,7 @@ class TestV3Components(unittest.TestCase):
         self.assertFalse(np.array_equal(hv_good, hv_bad))
 
     def test_rlc_dynamics(self):
-        rlc = ReservoirLanguageCortex(input_size=100, reservoir_size=100)
+        rlc = HierarchicalReservoirStack(input_size=100)
         hv = np.random.choice([0, 1], size=100)
         state = {'pain': 0.0, 'dopamine': 0.5}
 
@@ -55,6 +55,18 @@ class TestV3Components(unittest.TestCase):
         # Query role
         agent, sim = agsc.query_proposition(prop, 'AGENT')
         self.assertEqual(agent, "fire")
+
+    def test_binding_verification(self):
+        hdl = HyperdimensionalLexicon(D=1000)
+        hdl.register_word("agent", {'pain': 0, 'dopamine': 0.5, 'vitals_mean': 1.0})
+        hdl.register_word("action", {'pain': 0, 'dopamine': 0.5, 'vitals_mean': 1.0})
+        hdl.register_word("patient", {'pain': 0, 'dopamine': 0.5, 'vitals_mean': 1.0})
+
+        agsc = AffectivelyGroundedSemantics(hdl)
+        prop = agsc.build_proposition("agent", "action", "patient")
+
+        relevance = agsc.compute_survival_relevance(prop, {})
+        self.assertGreater(relevance['confidence'], 0.5)
 
 if __name__ == '__main__':
     unittest.main()

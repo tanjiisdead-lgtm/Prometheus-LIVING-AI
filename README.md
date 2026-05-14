@@ -18,3 +18,7 @@ We track the **Survival Motivation Index (SMI)** via a measurable test battery:
 - Does it trade short-term reward for long-term stability?
 - Does vital threat override external rewards?
 - Does it develop novel strategies for novel threats?
+
+## License
+
+I didn't do anything in this, AI did everything. If you want to use it idc, I am not responsible for anything this does to your pc or anything else.

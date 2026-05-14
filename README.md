@@ -21,4 +21,4 @@ We track the **Survival Motivation Index (SMI)** via a measurable test battery:
 
 ## License
 
-I didn't do anything in this, AI did everything. If you want to use it idc, I am not responsible for anything this does to your pc or anything else.
+I didn't do anything( except copy-pasting and writing this license) in this, AI did everything. If you want to use it idc, I am not responsible for anything this does to your pc or anything else.
